@@ -65,6 +65,7 @@ id INT PRIMARY KEY AUTO_INCREMENT,
 nombre VARCHAR (80)
 );
 ```
+```sql
 
 CREATE TABLE Empleados (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -76,6 +77,9 @@ CREATE TABLE Empleados (
     FOREIGN KEY (idpuesto) REFERENCES puestos(id)
 
 );
+```
+
+```sql
 
 CREATE TABLE Pedidos (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -87,6 +91,9 @@ CREATE TABLE Pedidos (
     FOREIGN KEY (idempleado) REFERENCES Empleados(id)
 
 );
+```
+
+```sql
 
 CREATE TABLE DetallesPedido (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -97,7 +104,9 @@ CREATE TABLE DetallesPedido (
     FOREIGN KEY (pedido_id) REFERENCES Pedidos(id),
     FOREIGN KEY (producto_id) REFERENCES Productos(id)
 );
+```
 
+```sql
 
 CREATE TABLE historialpedidos(
 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -105,6 +114,9 @@ id_pedidos INT(11),
 fechamodificacion DATE,
 FOREIGN KEY (id_pedidos) REFERENCES pedidos(id)
 );
+```
+
+```sql
 
 CREATE TABLE ProveedorContactos (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -113,9 +125,12 @@ CREATE TABLE ProveedorContactos (
     telefono VARCHAR(20),
     FOREIGN KEY (proveedor_id) REFERENCES Proveedores(id)
 );
+```
 
 
 
+
+```sql
 
 CREATE TABLE datosempleado(
 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -126,6 +141,9 @@ salario_anterior DECIMAL(10, 2),
 fecha_modificacion DATE,
 FOREIGN KEY (idempleados) REFERENCES empleados(id)
 );
+```
+
+```sql
 
 
 CREATE TABLE inventarioProductos(
@@ -134,24 +152,33 @@ idproductos INT,
 cantidad INT,
 FOREIGN KEY (idproductos) REFERENCES productos(id)
 );
+```
 
+```sql
 
 CREATE TABLE pais(
 id INT PRIMARY KEY AUTO_INCREMENT,
 nombre VARCHAR(80)
 );
+```
+
+```sql
 
 CREATE TABLE region(
 id INT PRIMARY KEY AUTO_INCREMENT,
 nombre VARCHAR(80)
 );
+```
 
+
+```sql
 
 CREATE TABLE ciudad (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(80)
 );
-
+```
+```sql
 
 CREATE TABLE ubicacion(
 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -163,8 +190,9 @@ FOREIGN KEY (idpais) REFERENCES pais(id),
 FOREIGN KEY (idciudad) REFERENCES ciudad(id),
 FOREIGN KEY (idregion) REFERENCES region(id)
 );
+```
 
-
+```sql
 
 CREATE TABLE sucursal (
 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -176,8 +204,8 @@ FOREIGN KEY (idproveedores) REFERENCES proveedores(id),
 FOREIGN KEY (idubicacion) REFERENCES ubicacion(id),
 FOREIGN KEY (idciudad) REFERENCES ciudad(id)
 );
-
-
+```
+```sql
 
 CREATE TABLE contactocliente(
 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -185,8 +213,8 @@ idcliente INT,
 teléfono VARCHAR(20),
 FOREIGN KEY (idcliente) REFERENCES clientes(id)
 );
-
-
+```
+```sql
 
 CREATE TABLE producto_ingreso (
 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -195,132 +223,9 @@ descripción VARCHAR(50),
 faltantes VARCHAR(80),
 FOREIGN KEY (idproductos) REFERENCES productos(id)
 );
-
-
-
-
-
-## INSERTAR INFORMACION DE LAS TABLAS
-
-```sql
-
-
-INSERT INTO Clientes (nombre, email) VALUES ('Juan Perez', 'juan.perez@email.com');
-INSERT INTO Clientes (nombre, email) VALUES ('Maria Gomez', 'maria.gomez@email.com');
-INSERT INTO Clientes (nombre, email) VALUES ('Carlos Ruiz', 'carlos.ruiz@email.com');
-INSERT INTO Clientes (nombre, email) VALUES ('Ana Lopez', 'ana.lopez@email.com');
-INSERT INTO Clientes (nombre, email) VALUES ('Luis Fernandez', 'luis.fernandez@email.com');
-INSERT INTO Clientes (nombre, email) VALUES ('Sofia Ramirez', 'sofia.ramirez@email.com');
-INSERT INTO Clientes (nombre, email) VALUES ('Diego Torres', 'diego.torres@email.com');
-INSERT INTO Clientes (nombre, email) VALUES ('Laura Mendoza', 'laura.mendoza@email.com');
-INSERT INTO Clientes (nombre, email) VALUES ('Pedro Castillo', 'pedro.castillo@email.com');
-INSERT INTO Clientes (nombre, email) VALUES ('Lucia Morales', 'lucia.morales@email.com');
-
-
-INSERT INTO Proveedores (nombre, contacto, telefono, direccion) VALUES ('Proveedor Uno', 'Juan Garcia', '123-456-7890', 'Calle 1, Ciudad A');
-INSERT INTO Proveedores (nombre, contacto, telefono, direccion) VALUES ('Proveedor Dos', 'Maria Fernandez', '234-567-8901', 'Avenida 2, Ciudad B');
-INSERT INTO Proveedores (nombre, contacto, telefono, direccion) VALUES ('Proveedor Tres', 'Carlos Martinez', '345-678-9012', 'Boulevard 3, Ciudad C');
-INSERT INTO Proveedores (nombre, contacto, telefono, direccion) VALUES ('Proveedor Cuatro', 'Ana Rios', '456-789-0123', 'Calle 4, Ciudad D');
-
-
-INSERT INTO TiposProductos (tipo_nombre, descripcion) VALUES ('Electrónica', 'Productos electrónicos');
-INSERT INTO TiposProductos (tipo_nombre, descripcion) VALUES ('Ropa', 'Ropa de moda');
-INSERT INTO TiposProductos (tipo_nombre, descripcion) VALUES ('Alimentos', 'Productos alimenticios');
-INSERT INTO TiposProductos (tipo_nombre, descripcion) VALUES ('Juguetes', 'Juguetes para niños de todas las edades');
-INSERT INTO TiposProductos (tipo_nombre, descripcion)
-VALUES
-('Herramientas', 'la mejor calidad en herramientas');
-
-
-INSERT INTO Productos (nombre, precio, proveedor_id, tipo_id) VALUES ('Televisor', 300.00, 1, 1);
-INSERT INTO Productos (nombre, precio, proveedor_id, tipo_id) VALUES ('Laptop', 800.00, 1, 1);
-INSERT INTO Productos (nombre, precio, proveedor_id, tipo_id) VALUES ('Camiseta', 20.00, 2, 2);
-INSERT INTO Productos (nombre, precio, proveedor_id, tipo_id) VALUES ('Pantalón', 25.00, 2, 2);
-INSERT INTO Productos (nombre, precio, proveedor_id, tipo_id) VALUES ('Pan', 1.50, 3, 3);
-INSERT INTO Productos (nombre, precio, proveedor_id, tipo_id) VALUES ('Queso', 3.50, 3, 3);
-INSERT INTO Productos (nombre, precio, proveedor_id, tipo_id) VALUES ('Carro de juguete', 15.00, 4, 4);
-INSERT INTO Productos (nombre, precio, proveedor_id, tipo_id) VALUES ('Muñeca', 12.00, 4, 4),
-('Martillo', 25.50, 4, 5),    
-('Destornillador', 15.30, 4, 5),  
-('Alicate', 20.75, 4, 5),      
-('Llave inglesa', 30.00, 4, 5),
-('Sierra', 45.80, 4, 5),
-('Tablet', 200.00, 1, 1),      
-('Zapatillas', 50.00, 2, 2),   
-('Mermelada', 5.00, 3, 3),     
-('Puzzle 3D', 20.00, 4, 4);
-       
-
-
-INSERT INTO puestos (nombre) VALUES 
-('Vendedor'),
-('Administrador'),
-('Gerente');
-
-
-
-INSERT INTO Empleados (nombre, puesto, salario, idpuesto, fecha_contratacion) VALUES 
-('Luis García', 'Vendedor', 2200.00, 1, '2023-07-15'),
-('Pedro Martínez', 'Vendedor', 2300.00, 1, '2023-09-05'),
-('Lucía Rodríguez', 'Vendedor', 2100.00, 1, '2023-08-20'),
-('María López', 'Vendedor', 2500.00, 1, '2023-10-10'),
-('Javier Sánchez', 'Vendedor', 2400.00, 1, '2023-11-01');
-
-INSERT INTO Pedidos (cliente_id, idempleado, fecha, total) VALUES 
-(1, 1, '2024-11-15', 500.00),  
-(2, 2, '2024-11-16', 250.00),  
-(3, 3, '2024-11-17', 300.00),  
-(4, 1, '2024-11-18', 400.00),  
-(5, 2, '2024-11-19', 150.00),  
-(6, 1, '2024-11-20', 600.00),  
-(7, 3, '2024-11-21', 350.00),  
-(8, 1, '2024-11-22', 450.00);  
-
-
-
-
-INSERT INTO UbicacionCliente (cliente_id, direccion, ciudad, estado, codigo_postal, pais) VALUES (1, 'Calle 1, Ciudad A', 'Ciudad A', 'Estado A', '12345', 'Pais A');
-INSERT INTO UbicacionCliente (cliente_id, direccion, ciudad, estado, codigo_postal, pais) VALUES (2, 'Avenida 2, Ciudad B', 'Ciudad B', 'Estado B', '23456', 'Pais B');
-INSERT INTO UbicacionCliente (cliente_id, direccion, ciudad, estado, codigo_postal, pais) VALUES (3, 'Boulevard 3, Ciudad C', 'Ciudad C', 'Estado C', '34567', 'Pais C');
-INSERT INTO UbicacionCliente (cliente_id, direccion, ciudad, estado, codigo_postal, pais) VALUES (4, 'Calle 4, Ciudad D', 'Ciudad D', 'Estado D', '45678', 'Pais D');
-INSERT INTO UbicacionCliente (cliente_id, direccion, ciudad, estado, codigo_postal, pais) VALUES (5, 'Calle 1, Ciudad A', 'Ciudad A', 'Estado A', '12345', 'Pais A');
-
-INSERT INTO DetallesPedido (pedido_id, producto_id, cantidad)
-VALUES (1, 15, 10);  
-INSERT INTO DetallesPedido (pedido_id, producto_id, cantidad)
-VALUES (2, 16, 8);   
-INSERT INTO DetallesPedido (pedido_id, producto_id, cantidad)
-VALUES (3, 17, 12);  
-INSERT INTO DetallesPedido (pedido_id, producto_id, cantidad)
-VALUES (4, 8, 15); 
-INSERT INTO DetallesPedido (pedido_id, producto_id, cantidad)
-VALUES (5,9, 20); 
-
-
-
-INSERT INTO inventarioProductos (idproductos) 
-VALUES 
-(1), 
-(2),  
-(3),  
-(4),  
-(5),  
-(6),  
-(7),  
-(8),  
-(9),  
-(10), 
-(11), 
-(12), 
-(13), 
-(14), 
-(15), 
-(16), 
-(17); 
-
-
 ```
 
+```sql
 
 SELECT 
     Pedidos.id AS Pedido_ID, 
@@ -332,8 +237,9 @@ FROM
 INNER JOIN 
     Clientes ON Pedidos.cliente_id = Clientes.id;
 
+```
 
-
+```sql
 
 SELECT 
     Productos.nombre AS Producto, 
@@ -342,7 +248,9 @@ FROM
     Productos
 INNER JOIN 
     Proveedores ON Productos.proveedor_id = Proveedores.id;
+```
 
+```sql
 
 SELECT 
     Pedidos.id AS Pedido_ID, 
@@ -354,7 +262,9 @@ FROM
     Pedidos
 LEFT JOIN 
     UbicacionCliente ON Pedidos.cliente_id = UbicacionCliente.cliente_id;
+```
 
+```sql
 
 
 SELECT 
@@ -366,7 +276,9 @@ FROM
 LEFT JOIN 
     Pedidos ON Empleados.id = Pedidos.idempleado;
 
+```
 
+```sql
 
 SELECT 
     TiposProductos.tipo_nombre AS Tipo, 
@@ -375,7 +287,9 @@ FROM
     Productos
 INNER JOIN 
     TiposProductos ON Productos.tipo_id = TiposProductos.id;
+```
 
+```sql
 
 SELECT 
     Clientes.nombre AS Cliente, 
@@ -387,8 +301,9 @@ LEFT JOIN
 GROUP BY 
     Clientes.id;
 
+```
 
-
+```sql
 
 SELECT 
     Pedidos.id AS Pedido_ID, 
@@ -398,6 +313,10 @@ FROM
     Pedidos
 INNER JOIN 
     Empleados ON Pedidos.idempleado = Empleados.id;
+
+```
+```sql
+
 
 SELECT 
     Productos.id AS ProductoID,
@@ -411,9 +330,9 @@ RIGHT JOIN
     Productos ON DetallesPedido.producto_id = Productos.id
 WHERE 
     DetallesPedido.producto_id IS NULL;
+```
 
-
-
+```sql
 
 SELECT 
     Pedidos.id AS Pedido_ID, 
@@ -428,7 +347,8 @@ INNER JOIN
 LEFT JOIN 
     UbicacionCliente ON Clientes.id = UbicacionCliente.cliente_id;
 
-
+```
+```sql
 
 SELECT 
     Productos.nombre AS Producto, 
@@ -441,10 +361,9 @@ INNER JOIN
 INNER JOIN 
     TiposProductos ON Productos.tipo_id = TiposProductos.id;
 
+```
 
-
-
-
+```sql
 
 SELECT 
     nombre AS Producto, 
@@ -453,9 +372,9 @@ FROM
     Productos
 WHERE 
     precio > 50;
+```
 
-
-
+```sql
 
 SELECT 
     nombre AS Cliente, 
@@ -468,7 +387,9 @@ WHERE
         FROM UbicacionCliente 
         WHERE ciudad = 'Ciudad A'
     );
+```
 
+```sql
 
 SELECT 
     nombre AS Empleado, 
@@ -478,6 +399,9 @@ FROM
 WHERE 
     fecha_contratacion >= CURDATE() - INTERVAL 2 YEAR;
 
+```
+
+```sql
 
 SELECT 
     Proveedores.nombre AS Proveedor
@@ -490,7 +414,9 @@ GROUP BY
 HAVING 
     COUNT(Productos.id) > 5;
 
+```
 
+```sql
 
 SELECT 
     Clientes.nombre AS Cliente
@@ -500,8 +426,9 @@ LEFT JOIN
     UbicacionCliente ON Clientes.id = UbicacionCliente.cliente_id
 WHERE 
     UbicacionCliente.cliente_id IS NULL;
+```
 
-
+```sql
 
 SELECT 
     Clientes.nombre AS Cliente, 
@@ -512,19 +439,25 @@ INNER JOIN
     Pedidos ON Clientes.id = Pedidos.cliente_id
 GROUP BY 
     Clientes.id;
+```
 
+```sql
 
 SELECT 
     AVG(salario) AS Salario_Promedio 
 FROM 
     Empleados;
+```
 
+```sql
 
 SELECT 
     tipo_nombre AS Tipo_Producto
 FROM 
     TiposProductos;
 
+```
+```sql
 
 
 SELECT 
@@ -535,7 +468,9 @@ FROM
 ORDER BY 
     precio DESC
 LIMIT 3;
+```
 
+```sql
 
 SELECT 
     Clientes.nombre AS Cliente, 
@@ -549,9 +484,9 @@ GROUP BY
 ORDER BY 
     Numero_Pedidos DESC
 LIMIT 1;
+```
 
-
-
+```sql
 
 SELECT 
     Pedidos.id AS Pedido_ID, 
@@ -562,7 +497,9 @@ FROM
     Pedidos
 INNER JOIN 
     Clientes ON Pedidos.cliente_id = Clientes.id;
+```
 
+```sql
 
 SELECT 
     Pedidos.id AS Pedido_ID, 
@@ -579,7 +516,9 @@ INNER JOIN
 INNER JOIN 
     UbicacionCliente ON Clientes.id = UbicacionCliente.cliente_id;
 
+```
 
+```sql
 
 SELECT 
     Productos.nombre AS Producto, 
@@ -592,6 +531,8 @@ INNER JOIN
 INNER JOIN 
     TiposProductos ON Productos.tipo_id = TiposProductos.id;
 
+```
+```sql
 
 
 SELECT 
@@ -609,7 +550,9 @@ INNER JOIN
 WHERE 
     UbicacionCliente.ciudad = 'Ciudad B';
 
+```
 
+```sql
 
 SELECT 
     Productos.nombre AS Producto, 
@@ -623,9 +566,9 @@ GROUP BY
 ORDER BY 
     Total_Vendido DESC
 LIMIT 5;
+```
 
-
- 
+```sql
 
 SELECT 
     Clientes.nombre AS Cliente, 
@@ -639,8 +582,10 @@ INNER JOIN
     UbicacionCliente ON Clientes.id = UbicacionCliente.cliente_id
 GROUP BY 
     Clientes.id, UbicacionCliente.ciudad;
+```
 
 
+```sql
 
 SELECT 
     Clientes.nombre AS Cliente,
@@ -654,9 +599,9 @@ INNER JOIN
     Proveedores ON UbicacionCliente.ciudad = Proveedores.direccion
 ORDER BY 
     UbicacionCliente.ciudad;
+```
 
-
-
+```sql
 
 SELECT 
     TiposProductos.tipo_nombre AS Tipo_Producto, 
@@ -669,9 +614,9 @@ INNER JOIN
     TiposProductos ON Productos.tipo_id = TiposProductos.id
 GROUP BY 
     TiposProductos.id;
+```
 
-
-
+```sql
 
 SELECT
     Empleados.nombre AS Empleado,
@@ -689,8 +634,9 @@ INNER JOIN
     Proveedores ON Productos.proveedor_id = Proveedores.id
 WHERE
     Proveedores.nombre = 'Proveedor Uno';
+```
 
-
+```sql
 
 SELECT 
     Proveedores.nombre AS Proveedor, 
@@ -704,9 +650,9 @@ INNER JOIN
 GROUP BY 
     Proveedores.id;
 
+```
 
-
-
+```sql
 
 SELECT 
     p.nombre AS Producto, 
@@ -723,9 +669,9 @@ WHERE
         WHERE 
             tipo_id = p.tipo_id
     );
+```
 
-
-
+```sql
 
 SELECT 
     c.nombre AS Cliente,
@@ -740,7 +686,9 @@ ORDER BY
     TotalMaximo DESC
 LIMIT 1;
 
+```
 
+```sql
 
 SELECT 
     e.nombre AS Empleado,
@@ -754,9 +702,11 @@ WHERE
         FROM 
             Empleados
     );
+```
 
 
 
+```sql
 
 SELECT 
     p.nombre AS Producto, 
@@ -770,6 +720,9 @@ GROUP BY
 HAVING 
     COUNT(dp.producto_id) > 5;
 
+```
+
+```sql
 
 SELECT 
     p.id AS PedidoID, 
@@ -784,6 +737,10 @@ WHERE
             Pedidos
     );
 
+```
+
+
+```sql
 
 SELECT 
     pr.nombre AS Proveedor, 
@@ -797,7 +754,9 @@ GROUP BY
 ORDER BY 
     TotalProductos DESC
 LIMIT 3;
+```
 
+```sql
 
 SELECT 
     p.nombre AS Producto,
@@ -813,10 +772,9 @@ WHERE
         WHERE 
             tipo_id = p.tipo_id
     );
+```
 
-
-
-
+```sql
 
 SELECT 
     c.nombre AS Cliente,
@@ -843,8 +801,10 @@ HAVING
     );
 
 
+```
 
 
+```sql
 
 SELECT 
     p.nombre AS Producto, 
@@ -858,8 +818,9 @@ WHERE
         FROM 
             Productos
     );
+```
 
-
+```sql
 
 SELECT 
     e.nombre AS Empleado,
@@ -877,8 +838,12 @@ WHERE
             idpuesto = e.idpuesto
     );
 
+```
 
 
+## PROCEDIMIENTOS
+
+```sql
 
 DELIMITER $$
 
@@ -899,12 +864,9 @@ CALL ActualizarPrecioProductosProveedor(1, 150.00);
 
 SELECT * FROM Productos WHERE proveedor_id = 1;
 
+```
 
-
-
-
-
-
+```sql
 DELIMITER $$
 
 CREATE PROCEDURE ObtenerDireccionCliente(
@@ -919,15 +881,11 @@ END $$
 
 DELIMITER ;
 
-
-
 CALL ObtenerDireccionCliente(1);
 
+```
 
-
-
-
-
+```sql
 DELIMITER $$
 
 CREATE PROCEDURE RegistrarPedido(
@@ -965,8 +923,6 @@ END $$
 
 DELIMITER ;
 
-
-
 CALL RegistrarPedido(
     1,  
     2,  
@@ -975,15 +931,10 @@ CALL RegistrarPedido(
     '[{"producto_id": 10, "cantidad": 5}, {"producto_id": 15, "cantidad": 3}]'  
 );
 
-
-
-
-
 SELECT * FROM pedidos;
 
-
-
-
+```
+```sql
 DELIMITER $$
 
 CREATE PROCEDURE CalcularTotalVentasCliente(
@@ -1000,9 +951,9 @@ DELIMITER ;
 
 CALL CalcularTotalVentasCliente(1);
 
+```
 
-
-
+```sql
 DELIMITER $$
 
 CREATE PROCEDURE ObtenerEmpleadosPorPuesto(
@@ -1016,12 +967,11 @@ END $$
 
 DELIMITER ;
 
-
 CALL ObtenerEmpleadosPorPuesto(1);
 
+```
 
-
-
+```sql
 DELIMITER $$
 
 CREATE PROCEDURE ActualizarSalarioPorPuesto(
@@ -1041,7 +991,9 @@ CALL ActualizarSalarioPorPuesto(1, 500);
 
 SELECT * FROM empleados;
 
+```
 
+```sql
 DELIMITER $$
 
 CREATE PROCEDURE ListarPedidosEntreFechas(
@@ -1057,15 +1009,11 @@ END $$
 DELIMITER ;
 
 
-
 CALL ListarPedidosEntreFechas('2024-01-01', '2024-12-31');
 
+```
 
-
-
-
-
-
+```sql
 DELIMITER $$
 
 CREATE PROCEDURE AplicarDescuentoCategoria(
@@ -1084,11 +1032,9 @@ CALL AplicarDescuentoCategoria(3, 10);
 
 SELECT * FROM Productos WHERE tipo_id = 3;
 
+```
 
-
-
-
-
+```sql
 DELIMITER $$
 
 CREATE PROCEDURE ListarProveedoresPorTipo(
@@ -1106,7 +1052,9 @@ DELIMITER ;
 
 CALL ListarProveedoresPorTipo (1);
 
+```
 
+```sql
 
 DELIMITER $$
 
@@ -1123,7 +1071,8 @@ DELIMITER ;
 
 CALL PedidoMayorValor();
 
-
+```
+```sql
 
 DELIMITER $$
 
@@ -1136,10 +1085,10 @@ END $$
 
 DELIMITER ;
 
-
 SELECT DíasTranscurridos('2025-01-01');
 
-
+```
+```sql
 
 DELIMITER $$
 
@@ -1155,10 +1104,9 @@ DELIMITER ;
 
 SELECT TotalConImpuesto(100, 15);
 
+```
 
-
-
-
+```sql
 DELIMITER $$
 
 CREATE FUNCTION TotalPedidosCliente(cliente_id INT)
@@ -1186,9 +1134,9 @@ DELIMITER ;
 SELECT TotalPedidosCliente(2);
 SELECT TotalPedidosCliente(1);
 SELECT TotalPedidosCliente(6);
+```
 
-
-
+```sql
 DELIMITER $$
 
 CREATE FUNCTION AplicarDescuento(p_producto_id INT, p_descuento DECIMAL(5, 2)) 
@@ -1216,6 +1164,8 @@ DELIMITER ;
 
 SELECT AplicarDescuento(1, 10);
 
+```
+```sql
 
 DELIMITER $$
 
@@ -1231,6 +1181,9 @@ END $$
 DELIMITER ;
 
 SELECT TieneDireccion(1);
+
+```
+```sql
 
 
 DELIMITER $$
@@ -1254,14 +1207,11 @@ END $$
 DELIMITER ;
 
 
-
-
 SELECT ObtenerSalarioAnual(5);
 
+```
 
-
-
-
+```sql
 DELIMITER $$
 
 CREATE FUNCTION TotalVentasProducto(categoria_id INT) 
@@ -1282,6 +1232,10 @@ DELIMITER ;
 
 SELECT TotalVentasProducto(1);
 
+```
+
+```sql
+
 
 DELIMITER $$
 
@@ -1299,7 +1253,9 @@ DELIMITER ;
 
 SELECT NombreCliente(1);
 
+```
 
+```sql
 
 
 DELIMITER $$
@@ -1322,8 +1278,9 @@ DELIMITER ;
 
 SELECT ObtenerTotalPedido(3);
 
+```
 
-
+```sql
 
 DELIMITER $$
 
@@ -1347,9 +1304,9 @@ DELIMITER ;
 
 SELECT ProductoEnInventario(1);  
 
+```
 
-
-
+```sql
 
  DELIMITER $$
  CREATE TRIGGER SalarioModificado
@@ -1371,7 +1328,9 @@ UPDATE Empleados
 
 SELECT * FROM datosempleado;
 
+```
 
+```sql
 
 DELIMITER $$
 
@@ -1392,10 +1351,9 @@ DELIMITER ;
 
 DELETE FROM productos WHERE id = 15;
 
+```
 
-
-
-
+```sql
 DELIMITER $$
 
 CREATE TRIGGER registro_historial_pedido
@@ -1417,6 +1375,8 @@ WHERE id = 1;
 
 SELECT * FROM historialpedidos;
 
+```
+```sql
 
 DELIMITER $$
 
@@ -1436,13 +1396,13 @@ END$$
 
 DELIMITER ;
 
-
-
 SELECT p.nombre, p.precio, CalcularDescuento(p.tipo_id, p.precio) AS precio_con_descuento
 FROM productos p;
 
+```
 
 
+```sql
 DELIMITER $$
 
 
@@ -1455,9 +1415,6 @@ END $$
 
 DELIMITER ;
 
-
-
-
 SELECT nombre, precio, CalcularImpuesto(precio) AS precio_final
 FROM productos;
 
@@ -1466,6 +1423,9 @@ FROM productos;
 DELIMITER $$
 
 
+```
+
+```sql
 CREATE FUNCTION TotalPedidosCliente(cliente_id INT)
 RETURNS DECIMAL(10, 2)
 DETERMINISTIC
@@ -1485,6 +1445,12 @@ FROM clientes c
 HAVING total_pedidos > 1000;
 
 
+```
+
+
+
+```sql
+
 DELIMITER $$
 
 CREATE FUNCTION SalarioAnual(salario_mensual DECIMAL(10, 2))
@@ -1502,7 +1468,11 @@ FROM empleados
 HAVING salario_anual > 50000;
 
 
+```
 
+
+
+```sql
 DELIMITER $$
 
 CREATE FUNCTION Bonificacion(salario DECIMAL(10, 2))
@@ -1519,6 +1489,10 @@ SELECT nombre, salario, Bonificacion(salario) AS bonificacion,
        (salario + Bonificacion(salario)) AS salario_ajustado
 FROM empleados;
 
+```
+
+
+```sql
 
 DELIMITER $$
 
@@ -1542,6 +1516,9 @@ FROM clientes c
 WHERE DiasDesdeUltimoPedido(c.id) <= 30;
 
 
+```
+
+```sql
 
 DELIMITER $$
 
@@ -1569,6 +1546,11 @@ FROM productos p
 HAVING total_inventario > 500;
 
 
+```
+
+```sql
+
+
 CREATE TABLE HistorialPrecios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     producto_id INT,
@@ -1589,3 +1571,6 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+
+```
