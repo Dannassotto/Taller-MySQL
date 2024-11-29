@@ -65,6 +65,8 @@ id INT PRIMARY KEY AUTO_INCREMENT,
 nombre VARCHAR (80)
 );
 ```
+
+# Tabla Empleados
 ```sql
 
 CREATE TABLE Empleados (
@@ -78,7 +80,7 @@ CREATE TABLE Empleados (
 
 );
 ```
-
+# Tabla Pedidos
 ```sql
 
 CREATE TABLE Pedidos (
@@ -92,7 +94,7 @@ CREATE TABLE Pedidos (
 
 );
 ```
-
+# Tabla DetallesPedidos
 ```sql
 
 CREATE TABLE DetallesPedido (
@@ -105,7 +107,7 @@ CREATE TABLE DetallesPedido (
     FOREIGN KEY (producto_id) REFERENCES Productos(id)
 );
 ```
-
+# Tabla Historial Pedidos
 ```sql
 
 CREATE TABLE historialpedidos(
@@ -115,7 +117,7 @@ fechamodificacion DATE,
 FOREIGN KEY (id_pedidos) REFERENCES pedidos(id)
 );
 ```
-
+# Tabla Proveedor Contactos
 ```sql
 
 CREATE TABLE ProveedorContactos (
@@ -126,10 +128,7 @@ CREATE TABLE ProveedorContactos (
     FOREIGN KEY (proveedor_id) REFERENCES Proveedores(id)
 );
 ```
-
-
-
-
+# Tabla Datos Empleados
 ```sql
 
 CREATE TABLE datosempleado(
@@ -143,6 +142,7 @@ FOREIGN KEY (idempleados) REFERENCES empleados(id)
 );
 ```
 
+# Tabla Inventario Productos
 ```sql
 
 
@@ -153,7 +153,7 @@ cantidad INT,
 FOREIGN KEY (idproductos) REFERENCES productos(id)
 );
 ```
-
+# Tabla Pais
 ```sql
 
 CREATE TABLE pais(
@@ -161,7 +161,7 @@ id INT PRIMARY KEY AUTO_INCREMENT,
 nombre VARCHAR(80)
 );
 ```
-
+# Tabla Region
 ```sql
 
 CREATE TABLE region(
@@ -170,7 +170,7 @@ nombre VARCHAR(80)
 );
 ```
 
-
+# Tabla Ciudad
 ```sql
 
 CREATE TABLE ciudad (
@@ -178,6 +178,8 @@ CREATE TABLE ciudad (
     nombre VARCHAR(80)
 );
 ```
+
+# Tabla Ubicacion
 ```sql
 
 CREATE TABLE ubicacion(
@@ -191,7 +193,7 @@ FOREIGN KEY (idciudad) REFERENCES ciudad(id),
 FOREIGN KEY (idregion) REFERENCES region(id)
 );
 ```
-
+# Tabla Sucursal
 ```sql
 
 CREATE TABLE sucursal (
@@ -205,6 +207,7 @@ FOREIGN KEY (idubicacion) REFERENCES ubicacion(id),
 FOREIGN KEY (idciudad) REFERENCES ciudad(id)
 );
 ```
+# Tabla Contacto Clientes
 ```sql
 
 CREATE TABLE contactocliente(
@@ -214,6 +217,8 @@ teléfono VARCHAR(20),
 FOREIGN KEY (idcliente) REFERENCES clientes(id)
 );
 ```
+
+# Tablas Producto Ingreso
 ```sql
 
 CREATE TABLE producto_ingreso (
